@@ -1,6 +1,7 @@
 package com.example.lehoanggiang.traicaythanhsang.activity;
 
 import android.app.VoiceInteractor;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.util.ArrayMap;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             ActionViewFlipper();
             GetDuLieuLoaisp();
             GetDuLieuSPMoiNhat();
+            CatchOnItemListView();
         } else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Kiem tra lai ket noi");
             finish();
@@ -79,6 +82,81 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private void CatchOnItemListView() {
+        listViewmanhinhchinh.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                switch (i) {
+                    case 0:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 1:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,SauRiengActivity.class);
+                            intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 2:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,DuaHauActivity.class);
+                            intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 3:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,LienHeActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 4:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,ThongTinActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+
+
+                }
+            }
+        });
+    }
+
 
     private void GetDuLieuSPMoiNhat() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
