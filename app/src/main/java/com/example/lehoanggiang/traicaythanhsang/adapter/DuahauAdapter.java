@@ -17,27 +17,26 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * Created by LE HOANG GIANG on 5/22/2025.
+ * Created by ADMIN on 5/23/2025.
  */
 
-
-public class SauRiengAdapter extends BaseAdapter {
+public class DuahauAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Sanpham> arraysaurieng;
+    ArrayList<Sanpham> arrayduahau;
 
-    public SauRiengAdapter(Context context, ArrayList<Sanpham> arraysaurieng) {
+    public DuahauAdapter(Context context, ArrayList<Sanpham> arrayduahau) {
         this.context = context;
-        this.arraysaurieng = arraysaurieng;
+        this.arrayduahau = arrayduahau;
     }
 
     @Override
     public int getCount() {
-        return arraysaurieng.size();
+        return arrayduahau.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return arraysaurieng.get(i);
+        return arrayduahau.get(i);
     }
 
     @Override
@@ -45,8 +44,8 @@ public class SauRiengAdapter extends BaseAdapter {
         return i;
     }
     public class ViewHolder{
-        public TextView txttensaurieng,txtgiasaurieng,txtmotasaurieng;
-        public ImageView imgsaurieng;
+        public TextView txttenduahau,txtgiaduahau,txtmotaduahau;
+        public ImageView imgduahau;
 
 
 
@@ -55,35 +54,35 @@ public class SauRiengAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder = null;
+        DuahauAdapter.ViewHolder viewHolder = null;
         if(view == null)
         {
-            viewHolder = new ViewHolder();
+            viewHolder = new DuahauAdapter.ViewHolder();
             LayoutInflater inflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.dong_saurieng,null);
-            viewHolder.txttensaurieng =(TextView) view.findViewById(R.id.textviewsaurieng);
-            viewHolder.txtgiasaurieng =(TextView) view.findViewById(R.id.textviewgiasaurieng);
-            viewHolder.txtmotasaurieng =(TextView) view.findViewById(R.id.textviewmotasaurieng);
-            viewHolder.imgsaurieng = (ImageView) view.findViewById(R.id.imageviewsaurieng);
+            view = inflater.inflate(R.layout.dong_duahau,null);
+            viewHolder.txttenduahau =(TextView) view.findViewById(R.id.textviewduahau);
+            viewHolder.txtgiaduahau =(TextView) view.findViewById(R.id.textviewgiaduahau);
+            viewHolder.txtmotaduahau =(TextView) view.findViewById(R.id.textviewmotaduahau);
+            viewHolder.imgduahau = (ImageView) view.findViewById(R.id.imageviewduahau);
             view.setTag(viewHolder);
 
         }
         else
         {
-            viewHolder =(ViewHolder) view.getTag();
+            viewHolder =(DuahauAdapter.ViewHolder) view.getTag();
 
         }
         Sanpham sanpham =(Sanpham) getItem(i);
-        viewHolder.txttensaurieng.setText(sanpham.getTensanpham());
+        viewHolder.txttenduahau.setText(sanpham.getTensanpham());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        viewHolder.txtgiasaurieng.setText("Giá: "+decimalFormat.format(sanpham.getGiasanpham())+ "Đ");
-        viewHolder.txtmotasaurieng.setMaxLines(2);
-        viewHolder.txtmotasaurieng.setEllipsize(TextUtils.TruncateAt.END);
-        viewHolder.txtmotasaurieng.setText(sanpham.getMotasanpham());
+        viewHolder.txtgiaduahau.setText("Giá: "+decimalFormat.format(sanpham.getGiasanpham())+ "Đ");
+        viewHolder.txtmotaduahau.setMaxLines(2);
+        viewHolder.txtmotaduahau.setEllipsize(TextUtils.TruncateAt.END);
+        viewHolder.txtmotaduahau.setText(sanpham.getMotasanpham());
         Picasso.with(context).load(sanpham.getHinhanhsanpham())
                 .placeholder(R.drawable.noimage)
                 .error(R.drawable.error)
-                .into(viewHolder.imgsaurieng);
+                .into(viewHolder.imgduahau);
         return view;
     }
 }

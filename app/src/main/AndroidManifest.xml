@@ -20,7 +20,8 @@
         <activity android:name=".activity.SauRiengActivity" />
         <activity android:name=".activity.DuaHauActivity" />
         <activity android:name=".activity.LienHeActivity" />
-        <activity android:name=".activity.ThongTinActivity"></activity>
+        <activity android:name=".activity.ThongTinActivity" />
+        <activity android:name=".activity.ChiTietSanPham"></activity>
     </application>
 
 </manifest>

@@ -1,11 +1,16 @@
 package com.example.lehoanggiang.traicaythanhsang.activity;
 
 import android.app.DownloadManager;
+import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.AuthFailureError;
@@ -28,6 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Handler;
 
 public class SauRiengActivity extends AppCompatActivity {
     Toolbar toolbarsr;
@@ -36,6 +42,10 @@ public class SauRiengActivity extends AppCompatActivity {
     ArrayList<Sanpham> mangsr;
     int idsr =0;
     int page = 1;
+    View footerview;
+    boolean isLoading = false;
+    boolean limitadata = false;
+    mHandler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,7 @@ public class SauRiengActivity extends AppCompatActivity {
             GetIdloaisp();
             ActionToolbar();
             GetData(page);
+            LoadMoreData();
 
         }else
         {
@@ -55,10 +66,33 @@ public class SauRiengActivity extends AppCompatActivity {
         }
 
 
+    }
 
-        GetIdloaisp();
-        ActionToolbar();
-        GetData(page);
+    private void LoadMoreData() {
+        lvsr.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent= new Intent(getApplicationContext(),ChiTietSanPham.class);
+                intent.putExtra("thongtinsanpham", mangsr.get(i));
+                startActivity(intent);
+            }
+        });
+        lvsr.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int FirstItem, int VisibleItem, int TotalItem) {
+                if (FirstItem + VisibleItem == TotalItem && TotalItem !=0 && isLoading == false && limitadata == false){
+                    isLoading = true;
+                    ThreadData threadData = new ThreadData();
+                    threadData.start();
+                }
+
+            }
+        });
     }
 
     private void GetData(int Page) {
@@ -73,8 +107,9 @@ public class SauRiengActivity extends AppCompatActivity {
                 String Hinhanhsr = "";
                 String Mota = "";
                 int Idspsr = 0;
-                if(response !=null)
+                if(response !=null && response.length() != 2)
                 {
+                    lvsr.removeFooterView(footerview);
                     try{
                         JSONArray jsonarray = new JSONArray(response);
                         for (int i = 0; i < jsonarray.length();i++)
@@ -97,6 +132,11 @@ public class SauRiengActivity extends AppCompatActivity {
                     {
                         e.printStackTrace();
                     }
+                }
+                else {
+                    limitadata=true;
+                    lvsr.removeFooterView(footerview);
+                    CheckConnection.ShowToast_Short(getApplicationContext(),"Đã hết dữ liệu");
                 }
 
             }
@@ -140,5 +180,37 @@ public class SauRiengActivity extends AppCompatActivity {
         mangsr = new ArrayList<>();
         sauriengadapter = new SauRiengAdapter(getApplicationContext(),mangsr);
         lvsr.setAdapter(sauriengadapter);
+        LayoutInflater inflater= (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        footerview= inflater.inflate(R.layout.progressbar,null);
+        mHandler= new mHandler();
+    }
+    public class mHandler extends android.os.Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 0:
+                    lvsr.addFooterView(footerview);
+                    break;
+                case 1:
+                    GetData(++page);
+                    isLoading = false;
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    }
+    public class ThreadData extends Thread{
+        @Override
+        public void run() {
+            mHandler.sendEmptyMessage(0);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Message message= mHandler.obtainMessage(1);
+            mHandler.sendMessage(message);
+            super.run();
+        }
     }
 }

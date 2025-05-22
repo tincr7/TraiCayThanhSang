@@ -1,10 +1,12 @@
 package com.example.lehoanggiang.traicaythanhsang.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ADMIN on 5/21/2025.
  */
 
-public class Sanpham {
+public class Sanpham implements Serializable {
     public int ID;
     public String Tensanpham;
     public Integer Giasanpham;

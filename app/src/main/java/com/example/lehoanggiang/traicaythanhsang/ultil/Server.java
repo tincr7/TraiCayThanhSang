@@ -5,8 +5,8 @@ package com.example.lehoanggiang.traicaythanhsang.ultil;
  */
 
 public class Server {
-    public static String localhost="192.168.1.16";
-    public static String DuongdanLoaisp="http://" + localhost +":8080/server/getloaisp.php";
-    public static String Duongdansanphammoinhat="http://" + localhost +":8080/server/getsanphammoinhat.php";
-    public static String Duongdansaurieng = "http://" + localhost +":8080/server/getsanpham.php?page=";
+    public static String localhost="192.168.0.102";
+    public static String DuongdanLoaisp="http://" + localhost +":81/server/getloaisp.php";
+    public static String Duongdansanphammoinhat="http://" + localhost +":81/server/getsanphammoinhat.php";
+    public static String Duongdansaurieng="http://" + localhost +":81/server/getsanpham.php?page=";
 }

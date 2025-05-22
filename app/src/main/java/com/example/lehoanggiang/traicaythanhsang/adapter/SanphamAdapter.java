@@ -1,6 +1,7 @@
 package com.example.lehoanggiang.traicaythanhsang.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lehoanggiang.traicaythanhsang.R;
+import com.example.lehoanggiang.traicaythanhsang.activity.ChiTietSanPham;
 import com.example.lehoanggiang.traicaythanhsang.model.Sanpham;
+import com.example.lehoanggiang.traicaythanhsang.ultil.CheckConnection;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -62,6 +65,19 @@ public class SanphamAdapter extends RecyclerView.Adapter<SanphamAdapter.ItemHold
             imghinhsanpham= (ImageView) itemView.findViewById(R.id.imageviewsanpham);
             txtgiasanpham= (TextView) itemView.findViewById(R.id.textviewgiasanpham);
             txttensanpham= (TextView) itemView.findViewById(R.id.textviewtensanpham);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(context, ChiTietSanPham.class);
+                        intent.putExtra("thongtinsanpham", arraysanpham.get(position));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        CheckConnection.ShowToast_Short(context, arraysanpham.get(position).getTensanpham());
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
     }
 }
