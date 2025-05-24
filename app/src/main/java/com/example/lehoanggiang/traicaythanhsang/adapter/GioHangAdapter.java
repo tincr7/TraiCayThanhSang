@@ -80,7 +80,7 @@ public class GioHangAdapter extends BaseAdapter {
                 .error(R.drawable.error)
                 .into(viewHolder.imggiohang);
 
-        viewHolder.btbvalues.setText(giohang.getSoluongsp());
+        viewHolder.btbvalues.setText(giohang.getSoluongsp() + "");
         return view;
     }
 }
