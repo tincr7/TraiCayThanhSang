@@ -21,7 +21,8 @@
         <activity android:name=".activity.DuaHauActivity" />
         <activity android:name=".activity.LienHeActivity" />
         <activity android:name=".activity.ThongTinActivity" />
-        <activity android:name=".activity.ChiTietSanPham"></activity>
+        <activity android:name=".activity.ChiTietSanPham" />
+        <activity android:name=".activity.GioHangActivity"></activity>
     </application>
 
 </manifest>
