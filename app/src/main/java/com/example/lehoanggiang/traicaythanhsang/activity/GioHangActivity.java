@@ -76,6 +76,7 @@ public class GioHangActivity extends AppCompatActivity {
     private void Anhxa() {
         lvgiohang = (ListView) findViewById(R.id.listviewgiohang);
         txtthongbao = (TextView) findViewById(R.id.textviewthongbao);
+        txttongtien = (TextView) findViewById(R.id.txttongtien);
         btnthanhtoan = (Button) findViewById(R.id.buttonthanhtoangiohang);
         btntieptucmua = (Button) findViewById(R.id.buttontieptucmuahang);
         toolbargiohang = (Toolbar) findViewById(R.id.toolbargiohang);

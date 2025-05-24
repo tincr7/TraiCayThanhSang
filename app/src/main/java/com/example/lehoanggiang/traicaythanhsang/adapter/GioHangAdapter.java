@@ -61,7 +61,7 @@ public class GioHangAdapter extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.dong_giohang,null);
             viewHolder.txttengiohang = (TextView) view.findViewById(R.id.textviewtengiohang);
-            viewHolder.txttengiohang = (TextView) view.findViewById(R.id.textviewgiagiohang);
+            viewHolder.txtgiagiohan = (TextView) view.findViewById(R.id.textviewgiagiohang);
             viewHolder.imggiohang  =(ImageView) view.findViewById(R.id.imageviewgiohang);
             viewHolder.btnminus  = (Button) view.findViewById(R.id.buttonins);
             viewHolder.btbvalues = (Button) view.findViewById(R.id.buttonvalues);
@@ -74,7 +74,7 @@ public class GioHangAdapter extends BaseAdapter {
         Giohang giohang  = (Giohang) getItem(i);
         viewHolder.txttengiohang.setText(giohang.getTensp());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        viewHolder.txtgiagiohan.setText(decimalFormat.format(giohang.getGiasp() + "Đ"));
+        viewHolder.txtgiagiohan.setText(decimalFormat.format(giohang.getGiasp()) + "Đ");
         Picasso.with(context).load(giohang.getHinhsp())
                 .placeholder(R.drawable.noimage)
                 .error(R.drawable.error)

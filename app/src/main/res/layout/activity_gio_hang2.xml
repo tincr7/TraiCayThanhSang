@@ -6,94 +6,78 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.lehoanggiang.traicaythanhsang.activity.GioHangActivity"
-    android:weightSum="10">
+    tools:context="com.example.lehoanggiang.traicaythanhsang.activity.GioHangActivity">
 
     <android.support.v7.widget.Toolbar
-        app:title="Giỏ hàng"
-        android:background="#4d7eb9"
         android:id="@+id/toolbargiohang"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.Toolbar>
-    <LinearLayout
-        android:layout_weight="7"
+        android:layout_height="wrap_content"
+        android:background="#4d7eb9"
+        app:title="Giỏ hàng" />
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <FrameLayout
+        android:layout_height="0dp"
+        android:layout_weight="7">
+
+        <TextView
+            android:id="@+id/textviewthongbao"
+            android:text="Giỏ hàng bạn đang trống"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/listviewgiohang"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/textviewthongbao"
-                android:textSize="30sp"
-                android:text="Giỏ hàng bạn đang trống"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ListView
-                android:id="@+id/listviewgiohang"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
-            </ListView>
-        </FrameLayout>
-
-    </LinearLayout>
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:gravity="center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-                <TextView
-                    android:textColor="#f20"
-                    android:text="Tổng tiền : "
-                    android:textSize="30sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+        android:orientation="horizontal"
+        android:weightSum="2">
 
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="Tổng tiền: "
+            android:textSize="20sp"
+            android:textColor="#f20" />
 
-
-            <LinearLayout
-                android:gravity="right|center"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent">
-                <TextView
-                    android:textColor="#f20"
-                    android:text="Giá trị : "
-                    android:textSize="30sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/txttongtien"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:text="0Đ"
+            android:textSize="20sp"
+            android:textColor="#f20" />
     </LinearLayout>
 
     <Button
-        android:textColor="#26a14b"
-        android:textSize="20dp"
-        android:text="Thanh toán giỏ hàng"
         android:id="@+id/buttonthanhtoangiohang"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
-    <Button
-        android:textColor="#26a14b"
-        android:textSize="20dp"
-        android:text="Tiếp tục mua hàng"
-        android:id="@+id/buttontieptucmuahang"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:text="Thanh toán giỏ hàng"
+        android:textSize="20sp"
+        android:textColor="#26a14b" />
 
+    <Button
+        android:id="@+id/buttontieptucmuahang"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Tiếp tục mua hàng"
+        android:textSize="20sp"
+        android:textColor="#26a14b" />
 </LinearLayout>
+
