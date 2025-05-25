@@ -134,7 +134,7 @@ public class GioHangAdapter extends BaseAdapter {
         viewHolder.btnminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int slmoinhat = Integer.parseInt(finalViewHolder1.btbvalues.getText().toString()) +1;
+                int slmoinhat = Integer.parseInt(finalViewHolder1.btbvalues.getText().toString()) -1;
                 int slht = MainActivity.manggiohang.get(i).getSoluongsp();
                 long giaht = MainActivity.manggiohang.get(i).getGiasp();
                 MainActivity.manggiohang.get(i).setSoluongsp(slmoinhat);
