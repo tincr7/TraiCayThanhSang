@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lehoanggiang.traicaythanhsang.R;
+import com.example.lehoanggiang.traicaythanhsang.activity.GioHangActivity;
+import com.example.lehoanggiang.traicaythanhsang.activity.MainActivity;
 import com.example.lehoanggiang.traicaythanhsang.model.Giohang;
 import com.squareup.picasso.Picasso;
 
@@ -53,7 +55,7 @@ public class GioHangAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
         if(view == null)
         {
@@ -71,7 +73,7 @@ public class GioHangAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
 
         }
-        Giohang giohang  = (Giohang) getItem(i);
+        final Giohang giohang  = (Giohang) getItem(i);
         viewHolder.txttengiohang.setText(giohang.getTensp());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         viewHolder.txtgiagiohan.setText(decimalFormat.format(giohang.getGiasp()) + "Đ");
@@ -81,6 +83,83 @@ public class GioHangAdapter extends BaseAdapter {
                 .into(viewHolder.imggiohang);
 
         viewHolder.btbvalues.setText(giohang.getSoluongsp() + "");
+        int sl = Integer.parseInt(viewHolder.btbvalues.getText().toString());
+        if (sl  >=10)
+        {
+            viewHolder.btnplus.setVisibility(View.INVISIBLE);
+            viewHolder.btnminus.setVisibility(View.VISIBLE);
+        }
+        else if(sl<=1) {
+            viewHolder.btnminus.setVisibility(View.INVISIBLE);
+        }
+        else if(sl>=1)
+        {
+            viewHolder.btnminus.setVisibility(View.VISIBLE);
+            viewHolder.btnplus.setVisibility(View.VISIBLE);
+        }
+        //final ViewHolder finalViewHolder = viewHolder;
+        final ViewHolder finalViewHolder = viewHolder;
+        viewHolder.btnplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int slmoinhat = Integer.parseInt(finalViewHolder.btbvalues.getText().toString()) +1;
+                int slht = MainActivity.manggiohang.get(i).getSoluongsp();
+                long giaht = MainActivity.manggiohang.get(i).getGiasp();
+                MainActivity.manggiohang.get(i).setSoluongsp(slmoinhat);
+                long giamoinhat = (giaht*slmoinhat)/slht;
+                MainActivity.manggiohang.get(i).setGiasp(giamoinhat);
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                finalViewHolder.txtgiagiohan.setText(decimalFormat.format(giamoinhat) + "Đ");
+                GioHangActivity.EventUltil();
+                if(slmoinhat > 9)
+                {
+                    finalViewHolder.btnplus.setVisibility(View.INVISIBLE);
+                    finalViewHolder.btnminus.setVisibility(View.VISIBLE);
+                    finalViewHolder.btbvalues.setText(String.valueOf(slmoinhat));
+
+
+                }
+                else
+                {
+                    finalViewHolder.btnminus.setVisibility(View.VISIBLE);
+                    finalViewHolder.btnplus.setVisibility(View.VISIBLE);
+                    finalViewHolder.btbvalues.setText(String.valueOf(slmoinhat));
+
+                }
+
+
+            }
+        });
+        final ViewHolder finalViewHolder1 = viewHolder;
+        viewHolder.btnminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int slmoinhat = Integer.parseInt(finalViewHolder1.btbvalues.getText().toString()) +1;
+                int slht = MainActivity.manggiohang.get(i).getSoluongsp();
+                long giaht = MainActivity.manggiohang.get(i).getGiasp();
+                MainActivity.manggiohang.get(i).setSoluongsp(slmoinhat);
+                long giamoinhat = (giaht*slmoinhat)/slht;
+                MainActivity.manggiohang.get(i).setGiasp(giamoinhat);
+                DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+                finalViewHolder1.txtgiagiohan.setText(decimalFormat.format(giamoinhat) + "Đ");
+                GioHangActivity.EventUltil();
+                if(slmoinhat < 2)
+                {
+                    finalViewHolder1.btnminus.setVisibility(View.INVISIBLE);
+                    finalViewHolder1.btnplus.setVisibility(View.VISIBLE);
+                    finalViewHolder1.btbvalues.setText(String.valueOf(slmoinhat));
+
+
+                }
+                else
+                {
+                    finalViewHolder1.btnminus.setVisibility(View.VISIBLE);
+                    finalViewHolder1.btnplus.setVisibility(View.VISIBLE);
+                    finalViewHolder1.btbvalues.setText(String.valueOf(slmoinhat));
+
+                }
+            }
+        });
         return view;
     }
 }
