@@ -44,11 +44,10 @@ public class SauRiengAdapter extends BaseAdapter {
     public long getItemId(int i) {
         return i;
     }
+
     public class ViewHolder{
         public TextView txttensaurieng,txtgiasaurieng,txtmotasaurieng;
         public ImageView imgsaurieng;
-
-
 
 
     }

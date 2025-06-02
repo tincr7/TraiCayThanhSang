@@ -152,6 +152,45 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
+                    case 3:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,NhapKhauActivity.class);
+                            intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 4:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,HuuCoActivity.class);
+                            intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 5:
+                        if(CheckConnection.isInternetAvailable(getApplicationContext()))
+                        {
+                            Intent intent = new Intent(MainActivity.this,ComBoActivity.class);
+                            intent.putExtra("idloaisanpham",mangloaisp.get(i).getId());
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            CheckConnection.ShowToast_Short(getApplicationContext(),"Bạn hãy kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
                     case 6:
                         if(CheckConnection.isInternetAvailable(getApplicationContext()))
                         {
