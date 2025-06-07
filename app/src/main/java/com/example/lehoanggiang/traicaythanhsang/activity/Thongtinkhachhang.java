@@ -102,7 +102,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
                                             JSONObject jsonobject = new JSONObject();
                                             try {
                                                 jsonobject.put("madonhang",madonhang);
-                                                jsonobject.put("masanpham",MainActivity.manggiohang.get(i).getIdsp());
+                                                jsonobject.put("id_sanpham",MainActivity.manggiohang.get(i).getIdsp());
                                                 jsonobject.put("tensanpham",MainActivity.manggiohang.get(i).getTensp());
                                                 jsonobject.put("giasanpham", MainActivity.manggiohang.get(i).getGiasp());
                                                 jsonobject.put("soluongsanpham",MainActivity.manggiohang.get(i).getSoluongsp());

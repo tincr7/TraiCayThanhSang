@@ -168,7 +168,7 @@ public class SauRiengActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> param = new HashMap<String, String>();
-                param.put("idsanpham",String.valueOf(idsr));
+                param.put("id_loaisanpham",String.valueOf(idsr));
                 return param;
             }
         };

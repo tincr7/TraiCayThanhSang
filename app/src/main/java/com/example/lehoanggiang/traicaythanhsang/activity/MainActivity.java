@@ -11,12 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     ListView listViewmanhinhchinh;
     DrawerLayout drawerLayout;
+    EditText edtTimKiem;
     ArrayList<Loaisp> mangloaisp;
     LoaispAdapter loaispAdapter;
     int id =0;
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Ánh xạ view
         Anhxa();
+
         if (CheckConnection.isInternetAvailable(getApplicationContext())) {
             // Thiết lập Toolbar
             ActionBar();
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             ActionViewFlipper();
             GetDuLieuLoaisp();
             GetDuLieuSPMoiNhat();
+            TextChannged();
             CatchOnItemListView();
         } else {
             CheckConnection.ShowToast_Short(getApplicationContext(), "Kiem tra lai ket noi");
@@ -222,6 +228,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void TextChannged()
+    {
+        edtTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Gọi tìm kiếm mỗi khi text thay đổi
+                timKiemSanPham(s.toString().trim());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+
+    }
+    private void timKiemSanPham(String keyword) {
+        if (keyword.isEmpty()) {
+            // Khi xóa hết từ khóa, load lại dữ liệu sản phẩm mới nhất
+            mangsanpham.clear();
+            GetDuLieuSPMoiNhat();
+            return;
+        }
+
+        TimKiemSanPham.timKiemSanPham(this, keyword, new TimKiemSanPham.TimKiemCallback() {
+            @Override
+            public void onSuccess(ArrayList<Sanpham> danhSach) {
+                mangsanpham.clear();
+                mangsanpham.addAll(danhSach);
+                sanphamAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
 
     private void GetDuLieuSPMoiNhat() {
@@ -341,6 +389,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView =(NavigationView) findViewById(R.id.navigationview);
         listViewmanhinhchinh =(ListView) findViewById(R.id.listviewmanhinhchinh);
         drawerLayout =(DrawerLayout) findViewById(R.id.drawerlayout);
+        edtTimKiem = (EditText) findViewById(R.id.edtTimKiemSanPham);
         mangloaisp= new ArrayList<>();
         mangloaisp.add(0, new Loaisp(0,"Trang chính","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFzVuVE5T79W84S5eYPDoqJAtFWUB9xYtoAw&s"));
         loaispAdapter= new LoaispAdapter(mangloaisp,getApplicationContext());

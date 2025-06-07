@@ -5,6 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,54 +16,79 @@
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarmanhinhchinh"
-                app:title ="Trang chính"
+                app:title="Trang chính"
                 android:background="#4665ce"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize" />
 
-            </android.support.v7.widget.Toolbar>
             <ViewFlipper
                 android:id="@+id/viewflipper"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></ViewFlipper>
+                android:layout_height="200dp" />
+
             <LinearLayout
                 android:background="#5992d2"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:textSize="20sp"
-                    android:textColor="#a71a04"
-                    android:text="Sản phẩm mới nhất"
-                    android:textStyle="bold"
-                    android:layout_margin="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:padding="5dp">
+
+                <!-- Dòng sản phẩm + spinner chọn loại -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:textColor="#a71a04"
+                        android:text="Sản phẩm"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/edtTimKiemSanPham"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="16dp"
+                        android:hint="Nhập tên sản phẩm"
+                        android:inputType="text"
+                        android:padding="8dp"
+                        android:background="@android:drawable/editbox_background"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Danh sách sản phẩm -->
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerview"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                </android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
+
+        <!-- Navigation Drawer -->
         <android.support.design.widget.NavigationView
             android:id="@+id/navigationview"
-            android:layout_gravity = "start"
+            android:layout_gravity="start"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ListView
                 android:id="@+id/listviewmanhinhchinh"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></ListView>
-
+                android:layout_height="wrap_content" />
         </android.support.design.widget.NavigationView>
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
