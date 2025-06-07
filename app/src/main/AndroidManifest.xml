@@ -47,7 +47,9 @@
             android:label="@string/title_activity_thong_tin" />
         <activity android:name=".activity.NhapKhauActivity" />
         <activity android:name=".activity.HuuCoActivity" />
-        <activity android:name=".activity.ComBoActivity"></activity>
+        <activity android:name=".activity.ComBoActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.Register"></activity>
     </application>
 
 </manifest>
