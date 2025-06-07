@@ -41,6 +41,7 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String username = edtUsername.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
 
@@ -109,6 +110,7 @@ public class LoginActivity extends Activity {
                 String status = jsonObject.getString("status");
 
                 if (status.equalsIgnoreCase("success")) {
+                    String id_khachhang = jsonObject.getString("id_khachhang"); // ✅ Thêm dòng này
                     String tenkhachhang = jsonObject.getString("tenkhachhang");
                     String email = jsonObject.getString("email");
                     String matkhau = jsonObject.getString("matkhau");
@@ -119,6 +121,7 @@ public class LoginActivity extends Activity {
                     SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putBoolean("isLoggedIn", true);
+                    editor.putString("id_khachhang", id_khachhang);
                     editor.putString("tenkhachhang", tenkhachhang);
                     editor.putString("email", email);
                     editor.putString("matkhau", matkhau);

@@ -1,102 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_thongtinkhachhang"
-    android:orientation="vertical"
-    android:background="#2f4079"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.lehoanggiang.traicaythanhsang.activity.Thongtinkhachhang">
-<LinearLayout
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/boder"
-    android:layout_marginBottom="80dp"
-    android:layout_marginTop="80dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:textStyle="bold"
-        android:textColor="#0a0a0a"
-        android:textSize="30sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thông tin khách hàng"/>
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_margin="5dp"
+    android:background="#2f4079"
+    android:padding="16dp">
 
-            android:id="@+id/edittexttenkhachhang"
-            android:inputType="text"
-            android:hint="Nhập tên khách hàng"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-    android:layout_marginTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <EditText
-        android:layout_margin="5dp"
-        android:id="@+id/edittextsdtkhachhang"
-        android:inputType="phone"
-        android:hint="Nhập số điện thoại"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_margin="5dp"
-
-            android:id="@+id/edittextemailkhachhang"
-            android:inputType="textEmailAddress"
-            android:hint="Nhập email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </android.support.design.widget.TextInputLayout>
     <LinearLayout
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_marginRight="70dp"
-            android:background="#6af1ff"
-            android:textColor="#28588c"
-            android:textSize="15sp"
-            android:padding="10dp"
-            android:id="@+id/buttonxacnhan"
-            android:text="Xác nhận"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/boder"
+        android:padding="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp">
+
+        <TextView
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <Button
-            android:background="#6af1ff"
-            android:textColor="#28588c"
-            android:textSize="15sp"
-            android:padding="10dp"
-            android:id="@+id/buttontrove"
-            android:text="Trở về"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Thông tin khách hàng"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#a89"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/edittexttenkhachhang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên khách hàng"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/edittextsdtkhachhang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số điện thoại"
+                android:inputType="phone" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/edittextemailkhachhang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/edittexdiachikhachhang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Địa chỉ"
+                android:inputType="textPostalAddress" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="24dp">
+
+            <Button
+                android:id="@+id/buttonxacnhan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:text="Xác nhận"
+                android:textSize="16sp"
+                android:textColor="#28588c"
+                android:background="#6af1ff"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/buttontrove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trở về"
+                android:textSize="16sp"
+                android:textColor="#28588c"
+                android:background="#6af1ff"
+                android:padding="10dp" />
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
-</LinearLayout>
+</ScrollView>
