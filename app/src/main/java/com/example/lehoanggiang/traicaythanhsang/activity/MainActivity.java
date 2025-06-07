@@ -124,6 +124,19 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menugiohang:
                 Intent intent =  new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.dangxuat:
+                SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+                Toast.makeText(MainActivity.this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+
+                // Quay về màn hình đăng nhập
+                Intent intent1 = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent1);
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

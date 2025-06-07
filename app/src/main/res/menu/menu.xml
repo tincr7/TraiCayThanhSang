@@ -6,4 +6,9 @@
     android:icon="@drawable/cart"
     android:title="Giỏ Hàng"
     app:showAsAction="always"/>
+    <item
+        android:id="@+id/dangxuat"
+        android:title="Đăng xuất"
+        android:icon="@drawable/logout"
+        app:showAsAction="always"/>
 </menu>
