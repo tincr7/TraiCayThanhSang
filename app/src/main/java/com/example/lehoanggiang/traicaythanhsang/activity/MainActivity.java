@@ -2,6 +2,7 @@ package com.example.lehoanggiang.traicaythanhsang.activity;
 
 import android.app.VoiceInteractor;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.util.ArrayMap;
@@ -69,26 +70,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Kiểm tra trạng thái đăng nhập (đã đồng bộ với LoginActivity)
+        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+        if (!isLoggedIn) {
+            // Nếu chưa đăng nhập, chuyển sang LoginActivity
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish(); // Đóng MainActivity để tránh quay lại
+            return;
+        }
+
+        // Tiếp tục khởi tạo MainActivity nếu đã đăng nhập
         setContentView(R.layout.activity_main);
 
-        // Ánh xạ view
+        // Ánh xạ view và các thao tác khác
         Anhxa();
 
         if (CheckConnection.isInternetAvailable(getApplicationContext())) {
-            // Thiết lập Toolbar
             ActionBar();
-
-            // Thiết lập Bảng quảng cáo
             ActionViewFlipper();
             GetDuLieuLoaisp();
             GetDuLieuSPMoiNhat();
             TextChannged();
             CatchOnItemListView();
         } else {
-            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiem tra lai ket noi");
+            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiểm tra lại kết nối");
             finish();
         }
     }
+
 //    @Override
 //    public boolean onCreateOptionsMenu (Menu menu)
 //    {

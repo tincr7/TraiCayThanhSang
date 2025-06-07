@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -68,7 +68,6 @@
             android:inputType="textPassword"
             android:background="@android:drawable/edit_text"
             android:layout_marginBottom="24dp" />
-
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
@@ -78,16 +77,6 @@
             android:textColor="#ffffff"
             android:layout_marginBottom="12dp" />
 
-        <Button
-            android:id="@+id/btnBackToLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quay lại đăng nhập"
-            android:background="#ffffff"
-            android:textColor="#4CAF50"
-            android:drawableLeft="@android:drawable/ic_media_previous"
-            android:onClick="ClickBackToLogin" />
-
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

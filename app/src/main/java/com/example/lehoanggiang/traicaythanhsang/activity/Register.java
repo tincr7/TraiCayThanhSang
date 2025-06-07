@@ -1,5 +1,6 @@
 package com.example.lehoanggiang.traicaythanhsang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -55,19 +56,26 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        String duongdan = Server.DuongdanDangKy; // URL API đăng ký
+        String duongdan = Server.DuongdanDangKy;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, duongdan,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();
+                        if (response.trim().equalsIgnoreCase("Đăng ký thành công!")) {
+                            Toast.makeText(Register.this, "Đăng ký thành công! Mời bạn đăng nhập.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Register.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish(); // Đóng màn hình đăng ký
+                        } else {
+                            Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Register.this, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Đã xảy ra lỗi! Vui lòng thử lại.", Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
