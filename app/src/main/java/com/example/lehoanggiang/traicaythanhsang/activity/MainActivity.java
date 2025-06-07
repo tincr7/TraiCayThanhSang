@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                     case 6:
                         if(CheckConnection.isInternetAvailable(getApplicationContext()))
                         {
-                            Intent intent = new Intent(MainActivity.this,LienHeActivity.class);
+                            Intent intent = new Intent(MainActivity.this,LichSuActivity.class);
                             startActivity(intent);
                         }
                         else
@@ -354,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                            e.printStackTrace();
                        }
                    }
-                    mangloaisp.add(6, new Loaisp(0,"Liên hệ","https://as2.ftcdn.net/jpg/05/00/52/07/1000_F_500520765_ZYO8tDmIOR1Ysu6hVthPEw9BwFBKx3qI.jpg"));
+                    mangloaisp.add(6, new Loaisp(0,"Lịch sử","https://as2.ftcdn.net/jpg/05/00/52/07/1000_F_500520765_ZYO8tDmIOR1Ysu6hVthPEw9BwFBKx3qI.jpg"));
                     mangloaisp.add(7, new Loaisp(0,"Thông tin","https://static-00.iconduck.com/assets.00/info-icon-2048x2048-tcgtx810.png"));
                 }
             }

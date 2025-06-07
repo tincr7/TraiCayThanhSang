@@ -112,8 +112,15 @@ public class Thongtinkhachhang extends AppCompatActivity {
                         CheckConnection.ShowToast_Short(getApplicationContext(), "Giỏ hàng trống");
                         return;
                     }
+                    double tongtien = 0;
+                    for (int i = 0; i < MainActivity.manggiohang.size(); i++) {
+                        int soluong = MainActivity.manggiohang.get(i).getSoluongsp();
+                        double gia = MainActivity.manggiohang.get(i).getGiasp();
+                        tongtien += soluong * gia;
+                    }
 
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    final double finalTongtien = tongtien;
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.Duongdandonhang,
                             new Response.Listener<String>() {
                                 @Override
@@ -190,6 +197,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
                             hashMap.put("sodienthoai", sdt);
                             hashMap.put("diachi", diachi);
                             hashMap.put("id_khachhang", String.valueOf(id_khachhang));
+                            hashMap.put("tongtien", String.valueOf(finalTongtien));
                             return hashMap;
                         }
                     };

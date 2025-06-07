@@ -102,8 +102,6 @@ public class ChiTietSanPham extends AppCompatActivity {
                 }
                 Intent intent = new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(intent);
-//                Intent intent = new Intent(getApplicationContext(),GioHang.class);
-//                startActivity(intent);
             }
         });
     }

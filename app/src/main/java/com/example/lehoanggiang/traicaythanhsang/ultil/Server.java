@@ -15,6 +15,7 @@ public class Server {
     public static String DuongdanDangKy = "http://" + localhost +":80/server/dangky.php";
     public static String DuongdanDangNhap = "http://" + localhost +":80/server/dangnhap.php";
     public static String Duongdanlaythongtinkhachhang = "http://" + localhost +":80/server/laythongtinkhachhang.php";
+    public static String Duongdanlichsu = "http://" + localhost +":80/server/lichsu.php";
 
 
 
