@@ -15,7 +15,6 @@ public class LichSu implements Serializable {
         this.tensanpham = tensanpham;
         this.giasanpham = giasanpham;
         this.soluong = soluong;
-        this.tongtien = giasanpham * soluong;
     }
 
     // Setter/getter
@@ -49,13 +48,5 @@ public class LichSu implements Serializable {
 
     public void setSoluong(int soluong) {
         this.soluong = soluong;
-    }
-
-    public double getTongtien() {
-        return tongtien;
-    }
-
-    public void setTongtien(double tongtien) {
-        this.tongtien = tongtien;
     }
 }

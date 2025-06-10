@@ -97,10 +97,7 @@ public class LichSuActivity extends AppCompatActivity {
                                     int giaSanPham = jsonObject.getInt("gia_san_pham");
                                     int soLuong = jsonObject.getInt("so_luong");
                                     String ngayDat = jsonObject.getString("ngay_dat");
-                                    long tongTien = jsonObject.getLong("tong_tien");
-
                                     LichSu lichSu = new LichSu(ngayDat, tenSanPham, giaSanPham, soLuong);
-                                    lichSu.setTongtien(tongTien); // ✅ dùng long thay vì double
                                     mangLichSu.add(lichSu);
                                 }
                                 lichSuAdapter.notifyDataSetChanged();

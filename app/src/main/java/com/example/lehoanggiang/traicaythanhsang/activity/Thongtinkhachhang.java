@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,6 +31,7 @@ import java.util.Map;
 public class Thongtinkhachhang extends AppCompatActivity {
     EditText edttenkhachhang, edtemail, edtsdt,edtdiachi;
     Button btnxacnhan, btntrove;
+    RadioButton rdbTienmat,rdbChuyenkhoan;
 
     int id_khachhang = -1;
 
@@ -105,13 +107,12 @@ public class Thongtinkhachhang extends AppCompatActivity {
                 final String email = edtemail.getText().toString().trim();
                 final String diachi = edtdiachi.getText().toString().trim();
 
-
-
                 if (ten.length() > 0 && sdt.length() > 0 && email.length() > 0) {
                     if (MainActivity.manggiohang == null || MainActivity.manggiohang.size() == 0) {
                         CheckConnection.ShowToast_Short(getApplicationContext(), "Giỏ hàng trống");
                         return;
                     }
+
                     double tongtien = 0;
                     for (int i = 0; i < MainActivity.manggiohang.size(); i++) {
                         int soluong = MainActivity.manggiohang.get(i).getSoluongsp();
@@ -125,61 +126,27 @@ public class Thongtinkhachhang extends AppCompatActivity {
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(final String madonhang) {
-                                    int madonhangInt = -1;
-                                    try {
-                                        madonhangInt = Integer.parseInt(madonhang);
-                                    } catch (NumberFormatException e) {
-                                        Log.e("ParseError", "madonhang không hợp lệ: " + madonhang);
+                                    if (!madonhang.matches("\\d+")) {
                                         CheckConnection.ShowToast_Short(getApplicationContext(), "Lỗi trả về mã đơn hàng");
                                         return;
                                     }
 
+                                    int madonhangInt = Integer.parseInt(madonhang);
                                     if (madonhangInt > 0) {
-                                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                                        StringRequest request = new StringRequest(Request.Method.POST, Server.Duongdanchitietdonhang,
-                                                new Response.Listener<String>() {
-                                                    @Override
-                                                    public void onResponse(String response) {
-                                                        if (response.equals("1")) {
-                                                            MainActivity.manggiohang.clear();
-                                                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn đã thêm dữ liệu giỏ hàng thành công");
-                                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                            startActivity(intent);
-                                                            CheckConnection.ShowToast_Short(getApplicationContext(), "Mời bạn tiếp tục mua hàng");
-                                                        } else {
-                                                            CheckConnection.ShowToast_Short(getApplicationContext(), "Dữ liệu giỏ hàng của bạn bị lỗi");
-                                                        }
-                                                    }
-                                                },
-                                                new Response.ErrorListener() {
-                                                    @Override
-                                                    public void onErrorResponse(VolleyError error) {
-                                                        Log.e("VolleyError", error.toString());
-                                                        CheckConnection.ShowToast_Short(getApplicationContext(), "Lỗi gửi chi tiết đơn hàng");
-                                                    }
-                                                }) {
-                                            @Override
-                                            protected Map<String, String> getParams() throws AuthFailureError {
-                                                JSONArray jsonArray = new JSONArray();
-                                                for (int i = 0; i < MainActivity.manggiohang.size(); i++) {
-                                                    JSONObject jsonObject = new JSONObject();
-                                                    try {
-                                                        jsonObject.put("madonhang", madonhang);
-                                                        jsonObject.put("id_sanpham", MainActivity.manggiohang.get(i).getIdsp());
-                                                        jsonObject.put("tensanpham", MainActivity.manggiohang.get(i).getTensp());
-                                                        jsonObject.put("giasanpham", MainActivity.manggiohang.get(i).getGiasp());
-                                                        jsonObject.put("soluongsanpham", MainActivity.manggiohang.get(i).getSoluongsp());
-                                                    } catch (JSONException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                    jsonArray.put(jsonObject);
-                                                }
-                                                HashMap<String, String> hashMap = new HashMap<>();
-                                                hashMap.put("json", jsonArray.toString());
-                                                return hashMap;
-                                            }
-                                        };
-                                        queue.add(request);
+                                        MainActivity.manggiohang.clear();
+                                        CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn đã thêm dữ liệu giỏ hàng thành công");
+
+                                        if (rdbTienmat.isChecked()) {
+                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(intent);
+                                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn đã chọn thanh toán tiền mặt");
+                                        } else if (rdbChuyenkhoan.isChecked()) {
+                                            Intent intent = new Intent(getApplicationContext(), ChuyenKhoanActivity.class);
+                                            startActivity(intent);
+                                            CheckConnection.ShowToast_Short(getApplicationContext(), "Bạn đã chọn thanh toán chuyển khoản");
+                                        } else {
+                                            CheckConnection.ShowToast_Short(getApplicationContext(), "Vui lòng chọn phương thức thanh toán");
+                                        }
                                     } else {
                                         CheckConnection.ShowToast_Short(getApplicationContext(), "Đặt hàng không thành công");
                                     }
@@ -187,7 +154,6 @@ public class Thongtinkhachhang extends AppCompatActivity {
                             }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.e("VolleyError", error.toString());
                             CheckConnection.ShowToast_Short(getApplicationContext(), "Lỗi kết nối hoặc server");
                         }
                     }) {
@@ -198,6 +164,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
                             hashMap.put("diachi", diachi);
                             hashMap.put("id_khachhang", String.valueOf(id_khachhang));
                             hashMap.put("tongtien", String.valueOf(finalTongtien));
+                            hashMap.put("phuong_thuc_thanh_toan", rdbTienmat.isChecked() ? "0" : "1");
                             return hashMap;
                         }
                     };
@@ -207,7 +174,6 @@ public class Thongtinkhachhang extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void Anhxa() {
@@ -217,5 +183,7 @@ public class Thongtinkhachhang extends AppCompatActivity {
         edtemail = (EditText) findViewById(R.id.edittextemailkhachhang);
         btnxacnhan = (Button) findViewById(R.id.buttonxacnhan);
         btntrove = (Button) findViewById(R.id.buttontrove);
+        rdbTienmat = (RadioButton) findViewById(R.id.rdbTienmat);
+        rdbChuyenkhoan = (RadioButton) findViewById(R.id.rdbChuyenkhoan);
     }
 }

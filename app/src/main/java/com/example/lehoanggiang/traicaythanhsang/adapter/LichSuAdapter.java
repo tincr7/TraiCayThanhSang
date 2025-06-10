@@ -22,8 +22,6 @@ public class LichSuAdapter extends BaseAdapter {
         this.context = context;
         this.arrayLichSu = arrayLichSu;
     }
-
-
     @Override
     public int getCount() {
         return arrayLichSu.size();
@@ -55,8 +53,6 @@ public class LichSuAdapter extends BaseAdapter {
             viewHolder.txtTenSanPham = (TextView) view.findViewById(R.id.txtTenSanPham);
             viewHolder.txtGiaSanPham = (TextView) view.findViewById(R.id.txtGiaSanPham);
             viewHolder.txtSoLuong = (TextView) view.findViewById(R.id.txtSoLuong);
-            viewHolder.txtTongTien = (TextView) view.findViewById(R.id.txtTongTien);
-
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -70,8 +66,6 @@ public class LichSuAdapter extends BaseAdapter {
         viewHolder.txtTenSanPham.setText("Sản phẩm: " + lichSu.getTensanpham());
         viewHolder.txtGiaSanPham.setText("Giá: " + decimalFormat.format(lichSu.getGiasanpham()) + "Đ");
         viewHolder.txtSoLuong.setText("Số lượng: " + lichSu.getSoluong());
-        viewHolder.txtTongTien.setText("Tổng tiền: " + decimalFormat.format(lichSu.getTongtien()) + "Đ");
-
         return view;
     }
 }

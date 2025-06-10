@@ -73,7 +73,25 @@
                 android:hint="Địa chỉ"
                 android:inputType="textPostalAddress" />
         </android.support.design.widget.TextInputLayout>
+        <LinearLayout
 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rdbTienmat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tiền mặt"/>
+
+            <RadioButton
+                android:id="@+id/rdbChuyenkhoan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Chuyển khoản"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
