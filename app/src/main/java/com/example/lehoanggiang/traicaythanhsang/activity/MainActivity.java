@@ -71,18 +71,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Kiểm tra trạng thái đăng nhập (đã đồng bộ với LoginActivity)
-        SharedPreferences sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-
-        if (!isLoggedIn) {
-            // Nếu chưa đăng nhập, chuyển sang LoginActivity
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish(); // Đóng MainActivity để tránh quay lại
-            return;
-        }
-
         // Tiếp tục khởi tạo MainActivity nếu đã đăng nhập
         setContentView(R.layout.activity_main);
 
@@ -102,13 +90,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu (Menu menu)
-//    {
-//        getMenuInflater().inflate(R.menu.menu,menu);
-//        return true;
-//
-//    }
+
 
 
     @Override
@@ -342,19 +324,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 if(response != null){
-                   for(int i=0; i<response.length(); i++){
-                       try{
-                           JSONObject jsonObject = response.getJSONObject(i);
-                           id = jsonObject.getInt("id");
-                           tenloaisp = jsonObject.getString("tenloaisp");
-                           hinhanhloaisp = jsonObject.getString("hinhanhloaisp");
-                           mangloaisp.add(new Loaisp(id, tenloaisp, hinhanhloaisp));
-                           loaispAdapter.notifyDataSetChanged();
-                       }catch(JSONException e){
-                           e.printStackTrace();
-                       }
-                   }
-                    mangloaisp.add(6, new Loaisp(0,"Lịch sử","https://as2.ftcdn.net/jpg/05/00/52/07/1000_F_500520765_ZYO8tDmIOR1Ysu6hVthPEw9BwFBKx3qI.jpg"));
+                    for(int i=0; i<response.length(); i++){
+                        try{
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            id = jsonObject.getInt("id");
+                            tenloaisp = jsonObject.getString("tenloaisp");
+                            hinhanhloaisp = jsonObject.getString("hinhanhloaisp");
+                            mangloaisp.add(new Loaisp(id, tenloaisp, hinhanhloaisp));
+                            loaispAdapter.notifyDataSetChanged();
+                        }catch(JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    mangloaisp.add(6, new Loaisp(0,"Lịch sử","https://png.pngtree.com/png-clipart/20221230/original/pngtree-history-symbol-icon-png-image_8831663.png"));
                     mangloaisp.add(7, new Loaisp(0,"Thông tin","https://static-00.iconduck.com/assets.00/info-icon-2048x2048-tcgtx810.png"));
                 }
             }

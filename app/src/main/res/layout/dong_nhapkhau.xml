@@ -37,8 +37,8 @@
                 <TextView
                     android:textSize="18sp"
                     android:layout_margin="5dp"
-                    android:textColor="#ec0690"
-                    android:text="Gía trái cây nhập khẩu"
+                    android:textColor="#FF7043"
+                    android:text="Giá trái cây nhập khẩu"
                     android:id="@+id/textviewgianhapkhau"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

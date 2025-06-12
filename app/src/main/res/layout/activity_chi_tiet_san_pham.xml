@@ -9,7 +9,7 @@
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarchitietsanpham"
-        android:background="#31C547"
+        android:background="#4AA3DF"
         app:title="Chi tiết sản phẩm"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:text="Tên sản phẩm"
-                    android:textColor="#f000"
+                    android:textColor="#333333"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <TextView
@@ -53,7 +53,7 @@
                     android:id="@+id/textviewgiachitietsanpham"
                     android:layout_marginLeft="5dp"
                     android:text="Giá sản phẩm"
-                    android:textColor="#E91E63"
+                    android:textColor="#FF7043"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -77,13 +77,14 @@
                     android:layout_height="match_parent">
                 </Spinner>
                 <Button
-
                     android:id="@+id/buttondatmua"
-                    android:textColor="#352700"
-                    android:textSize="15sp"
-                    android:text="Thêm vào giỏ"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:text="Thêm vào giỏ"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:background="@drawable/rounded_button" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -92,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:textColor="#f00000"
+            android:textColor="#333333"
             android:layout_marginTop="5dp"
             android:textSize="30dp"
             android:text="Mô tả chi tiết sản phẩm"

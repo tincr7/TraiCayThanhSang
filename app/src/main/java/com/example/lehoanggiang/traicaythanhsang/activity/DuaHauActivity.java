@@ -1,6 +1,7 @@
 package com.example.lehoanggiang.traicaythanhsang.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -79,6 +81,18 @@ public class DuaHauActivity extends AppCompatActivity {
             case R.id.menugiohang:
                 Intent intent =  new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(intent);
+            case R.id.dangxuat:
+                SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+                Toast.makeText(DuaHauActivity.this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+
+                // Quay về màn hình đăng nhập
+                Intent intent1 = new Intent(DuaHauActivity.this, LoginActivity.class);
+                startActivity(intent1);
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

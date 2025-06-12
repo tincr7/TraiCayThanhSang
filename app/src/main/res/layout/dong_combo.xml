@@ -37,7 +37,7 @@
                 <TextView
                     android:textSize="18sp"
                     android:layout_margin="5dp"
-                    android:textColor="#ec0690"
+                    android:textColor="#FF7043"
                     android:text="Giá ComBo"
                     android:id="@+id/textviewgiacombo"
                     android:layout_width="wrap_content"

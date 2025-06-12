@@ -7,9 +7,9 @@
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarthongtin"
-        android:background="#64b354"
-        app:titleTextColor="#f1edec"
-        app:title = "Thông tin"
+        android:background="#4AA3DF"
+        android:titleTextColor="#f9f6f5"
+        app:title = "THÔNG TIN"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
     <LinearLayout

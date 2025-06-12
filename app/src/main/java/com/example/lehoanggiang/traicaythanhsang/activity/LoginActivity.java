@@ -8,8 +8,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import com.example.lehoanggiang.traicaythanhsang.R;
 import com.example.lehoanggiang.traicaythanhsang.ultil.Server;
@@ -27,21 +29,44 @@ public class LoginActivity extends Activity {
 
     EditText edtUsername, edtPassword;
     Button btnLogin, btnGotoRegister;
+    CheckBox chkRemember;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        boolean rememberMe = preferences.getBoolean("rememberMe", false);
+
+        if (rememberMe) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
 
         edtUsername = (EditText) findViewById(R.id.edtUsername);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnGotoRegister = (Button) findViewById(R.id.btnGotoRegister);
+        chkRemember = (CheckBox) findViewById(R.id.chkRemember);
+
+        if (preferences.getBoolean("rememberMe", false)) {
+            edtUsername.setText(preferences.getString("email", ""));
+            edtPassword.setText(preferences.getString("matkhau", ""));
+            chkRemember.setChecked(true);
+        } else {
+            edtUsername.setText(""); // Để trống nếu không nhớ
+            edtPassword.setText("");
+            chkRemember.setChecked(false);
+        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
                 String username = edtUsername.getText().toString().trim();
                 String password = edtPassword.getText().toString().trim();
 
@@ -52,12 +77,28 @@ public class LoginActivity extends Activity {
                 }
             }
         });
-    }
 
-    // Nút "Đăng ký"
-    public void ClickGotoRegister(View view) {
-        Intent intent = new Intent(LoginActivity.this, Register.class);
-        startActivity(intent);
+        btnGotoRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView txtForgot = (TextView) findViewById(R.id.txtForgot);
+        txtForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = edtUsername.getText().toString().trim();
+                if (email.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Nhập email trước khi quên mật khẩu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                new ForgotPasswordTask(LoginActivity.this).execute(email);
+            }
+        });
     }
 
     private class LoginUser extends AsyncTask<String, Void, String> {
@@ -67,6 +108,7 @@ public class LoginActivity extends Activity {
         protected void onPreExecute() {
             dialog = new ProgressDialog(LoginActivity.this);
             dialog.setMessage("Đang đăng nhập...");
+            dialog.setCancelable(false);
             dialog.show();
         }
 
@@ -94,45 +136,48 @@ public class LoginActivity extends Activity {
 
                 writer.close();
                 reader.close();
-
                 return result.toString().trim();
 
             } catch (Exception e) {
                 return "error: " + e.getMessage();
             }
         }
+
+        private void saveLoginPreference(boolean remember, String tenkhachhang, String email, String matkhau) {
+            SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+
+            editor.putString("email", email);
+            editor.putString("matkhau", matkhau);
+            editor.putString("tenkhachhang", tenkhachhang);
+            editor.putBoolean("rememberMe", remember);
+
+            editor.apply();
+        }
+
+
         @Override
         protected void onPostExecute(String result) {
             dialog.dismiss();
-
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 String status = jsonObject.getString("status");
 
                 if (status.equalsIgnoreCase("success")) {
-                    String id_khachhang = jsonObject.getString("id_khachhang"); // ✅ Thêm dòng này
                     String tenkhachhang = jsonObject.getString("tenkhachhang");
                     String email = jsonObject.getString("email");
                     String matkhau = jsonObject.getString("matkhau");
 
+                    saveLoginPreference(chkRemember.isChecked(), tenkhachhang, email, matkhau);
+
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-
-                    // Lưu thông tin vào SharedPreferences
-                    SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.putString("id_khachhang", id_khachhang);
-                    editor.putString("tenkhachhang", tenkhachhang);
-                    editor.putString("email", email);
-                    editor.putString("matkhau", matkhau);
-                    editor.apply();
-
-                    // Chuyển sang MainActivity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 } else {
-                    String message = jsonObject.has("message") ? jsonObject.getString("message") : "Đăng nhập thất bại";
+                    String message = "Đăng nhập thất bại";
+                    if (jsonObject.has("message")) {
+                        message = jsonObject.getString("message");
+                    }
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
@@ -140,6 +185,5 @@ public class LoginActivity extends Activity {
                 e.printStackTrace();
             }
         }
-
     }
 }

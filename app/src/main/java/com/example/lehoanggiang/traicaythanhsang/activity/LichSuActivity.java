@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -68,9 +69,23 @@ public class LichSuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menugiohang) {
-            Intent intent = new Intent(getApplicationContext(), GioHangActivity.class);
-            startActivity(intent);
+        switch (item.getItemId())
+        {
+            case R.id.menugiohang:
+                Intent intent =  new Intent(getApplicationContext(),GioHangActivity.class);
+                startActivity(intent);
+            case R.id.dangxuat:
+                SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+                Toast.makeText(LichSuActivity.this, "Đăng xuất thành công!", Toast.LENGTH_SHORT).show();
+
+                // Quay về màn hình đăng nhập
+                Intent intent1 = new Intent(LichSuActivity.this, LoginActivity.class);
+                startActivity(intent1);
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

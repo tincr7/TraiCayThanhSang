@@ -5,7 +5,7 @@ package com.example.lehoanggiang.traicaythanhsang.ultil;
  */
 
 public class Server {
-    public static String localhost="192.168.9.34";
+    public static String localhost="192.168.100.102";
     public static String DuongdanLoaisp="http://" + localhost +":80/server/getloaisp.php";
     public static String Duongdansanphammoinhat="http://" + localhost +":80/server/getsanphammoinhat.php";
     public static String Duongdansaurieng="http://" + localhost +":80/server/getsanpham.php?page=";
@@ -16,6 +16,7 @@ public class Server {
     public static String DuongdanDangNhap = "http://" + localhost +":80/server/dangnhap.php";
     public static String Duongdanlaythongtinkhachhang = "http://" + localhost +":80/server/laythongtinkhachhang.php";
     public static String Duongdanlichsu = "http://" + localhost +":80/server/lichsu.php";
+    public static String DuongdanReset = "http://" + localhost +":80/server/forgot_password.php";
 
 
 

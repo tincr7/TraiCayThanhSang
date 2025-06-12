@@ -10,7 +10,7 @@
 
     <android.support.v7.widget.Toolbar
         app:title ="LỊCH SỬ"
-        android:background="#e70d0d"
+        android:background="#4AA3DF"
         android:titleTextColor="#f9f6f5"
         android:id="@+id/toolbarlichsu"
         android:layout_width="match_parent"

@@ -17,7 +17,7 @@
             android:id="@+id/toolbarmanhinhchinh"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#4665ce"
+            android:background="#4AA3DF"
             app:title="Trang chính" />
 
         <ViewFlipper
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#5992d2">
+            android:background="#D2F1FA">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,9 +40,10 @@
 
                 <TextView
                     android:textSize="20sp"
-                    android:textColor="#a71a04"
+                    android:textColor="#333333"
                     android:text="Sản phẩm"
                     android:textStyle="bold"
+                    android:paddingLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

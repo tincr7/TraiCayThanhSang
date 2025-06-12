@@ -17,15 +17,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SauRiengActivity" />
         <activity android:name=".activity.DuaHauActivity" />
+        <activity android:name=".activity.LichSuActivity" />
         <activity android:name=".activity.ChiTietSanPham" />
         <activity android:name=".activity.GioHangActivity" />
         <activity android:name=".activity.Thongtinkhachhang" />
@@ -47,10 +49,7 @@
         <activity android:name=".activity.NhapKhauActivity" />
         <activity android:name=".activity.HuuCoActivity" />
         <activity android:name=".activity.ComBoActivity" />
-        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.Register" />
-        <activity android:name=".activity.LichSuActivity" />
-        <activity android:name=".activity.ChuyenKhoanActivity"></activity>
     </application>
 
 </manifest>

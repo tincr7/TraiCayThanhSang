@@ -12,7 +12,7 @@
         android:id="@+id/toolbargiohang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4d7eb9"
+        android:background="#4AA3DF"
         app:title="Giỏ hàng" />
 
     <FrameLayout
@@ -69,7 +69,8 @@
         android:layout_weight="1"
         android:text="Thanh toán giỏ hàng"
         android:textSize="20sp"
-        android:textColor="#26a14b" />
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_button"/>
 
     <Button
         android:id="@+id/buttontieptucmuahang"
@@ -78,6 +79,8 @@
         android:layout_weight="1"
         android:text="Tiếp tục mua hàng"
         android:textSize="20sp"
-        android:textColor="#26a14b" />
+        android:background="@drawable/rounded_button"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp"/>
 </LinearLayout>
 
