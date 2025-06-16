@@ -9,7 +9,7 @@ android:padding="0dp"
     tools:context="com.example.lehoanggiang.traicaythanhsang.activity.SauRiengActivity"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        app:title ="SẦU RIÊNG"
+        app:title ="Trái cây có múi"
         android:background="#4AA3DF"
         android:titleTextColor="#f9f6f5"
         android:id="@+id/toolbarsaurieng"

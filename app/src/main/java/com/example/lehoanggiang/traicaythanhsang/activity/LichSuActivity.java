@@ -74,6 +74,7 @@ public class LichSuActivity extends AppCompatActivity {
             case R.id.menugiohang:
                 Intent intent =  new Intent(getApplicationContext(),GioHangActivity.class);
                 startActivity(intent);
+                break;
             case R.id.dangxuat:
                 SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();

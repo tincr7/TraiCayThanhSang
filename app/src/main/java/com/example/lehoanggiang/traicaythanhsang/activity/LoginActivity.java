@@ -143,13 +143,14 @@ public class LoginActivity extends Activity {
             }
         }
 
-        private void saveLoginPreference(boolean remember, String tenkhachhang, String email, String matkhau) {
+        private void saveLoginPreference(boolean remember, String tenkhachhang, String email, String matkhau, String id_khachhang) {
             SharedPreferences preferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
 
             editor.putString("email", email);
             editor.putString("matkhau", matkhau);
             editor.putString("tenkhachhang", tenkhachhang);
+            editor.putString("id_khachhang", id_khachhang);
             editor.putBoolean("rememberMe", remember);
 
             editor.apply();
@@ -167,8 +168,8 @@ public class LoginActivity extends Activity {
                     String tenkhachhang = jsonObject.getString("tenkhachhang");
                     String email = jsonObject.getString("email");
                     String matkhau = jsonObject.getString("matkhau");
-
-                    saveLoginPreference(chkRemember.isChecked(), tenkhachhang, email, matkhau);
+                    String id_khachhang = jsonObject.getString("id_khachhang");
+                    saveLoginPreference(chkRemember.isChecked(), tenkhachhang, email, matkhau, id_khachhang);
 
                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));

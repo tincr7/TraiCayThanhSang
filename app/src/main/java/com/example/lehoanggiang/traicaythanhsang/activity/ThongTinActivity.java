@@ -76,7 +76,7 @@ public class ThongTinActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.setMyLocationEnabled(true);
 
         // Add a marker in Sydney and move the camera
-        LatLng traicaythanhsang = new LatLng(10.792747206517932, 106.70738572132146);
+        LatLng traicaythanhsang = new LatLng(10.792709192396373, 106.70618236657263);
         mMap.addMarker(new MarkerOptions().position(traicaythanhsang).title("Trái cây thanh sang").snippet("Số 2 Trường Sa, Quận Bình Thạnh, TP.Hồ Chí Minh").icon(BitmapDescriptorFactory.defaultMarker()));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         CameraPosition cameraPosition = new CameraPosition.Builder().target(traicaythanhsang).zoom(18).build();

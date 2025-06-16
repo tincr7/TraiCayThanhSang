@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:padding="0dp">
     <android.support.v7.widget.Toolbar
-        app:title ="Dưa hấu"
+        app:title ="Trái cây nhiệt đới"
         android:background="#4AA3DF"
         android:titleTextColor="#f9f6f5"
         android:id="@+id/toolbarduahau"
