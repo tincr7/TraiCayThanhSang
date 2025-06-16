@@ -115,7 +115,7 @@ public class LoginActivity extends Activity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                URL url = new URL(Server.DuongdanDangNhap);
+                URL url = new URL(Server.DuongdanDangNhap_User);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
